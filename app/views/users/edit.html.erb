@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>User Edit Form</h1>
+
+  <%= form_with model: @user do |form| %>
+    <%= form.label :email, "Email:" %>
+    <%= form.email_field :email %> <br><br>
+    <%= form.label :username, 'Username:' %>
+    <%= form.text_field :username %> <br><br>
+    <%= form.label :password, 'Password:'%>
+    <%= form.password_field :password %> <br><br>
+    <%= form.submit "Submit" %>
+  <% end %>
+
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <ul>
+        <% @user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+</body>
+</html>
